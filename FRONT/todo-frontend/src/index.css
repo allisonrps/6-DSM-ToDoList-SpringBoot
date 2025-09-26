@@ -1,0 +1,181 @@
+/* ==================================== */
+/* 1. VARIÁVEIS GLOBAIS E RESET BÁSICO */
+/* ==================================== */
+:root {
+  /* Cores */
+  --cor-principal: #6c5ce7; /* Roxo vibrante */
+  --cor-secundaria: #a29bfe;
+  --cor-fundo: #ddf1ff; /* Cinza claro suave */
+  --cor-texto: #2d3436; /* Preto suave */
+  --cor-sucesso: #00b894; /* Verde para concluir */
+  --cor-erro: #d63031; /* Vermelho para deletar */
+
+  /* Estilos */
+  --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transicao-rapida: 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+/* ==================================== */
+/* 2. LAYOUT E CABEÇALHO (APP.JS) */
+/* ==================================== */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: var(--sombra-leve);
+}
+
+h1 {
+  text-align: center;
+  color: var(--cor-principal);
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* ==================================== */
+/* 3. FORMULÁRIO DE ADIÇÃO (GRID) */
+/* ==================================== */
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px; 
+  margin-bottom: 30px;
+}
+
+form input[type="text"]:first-child {
+    grid-column: span 2; 
+}
+
+input[type="text"] {
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid var(--cor-secundaria);
+  border-radius: 8px;
+  transition: border-color var(--transicao-rapida);
+}
+
+input[type="text"]:focus {
+  border-color: var(--cor-principal);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+}
+
+/* ==================================== */
+/* 4. BOTÕES GERAIS */
+/* ==================================== */
+button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color var(--transicao-rapida), transform 0.1s;
+  color: white;
+  background-color: var(--cor-principal);
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Estilos específicos para botões do formulário */
+.container form button:last-child {
+    background-color: var(--cor-principal); 
+    font-size: 16px;
+}
+
+/* ==================================== */
+/* 5. LISTA E ITENS (TAREFAITEM.JS) */
+/* ==================================== */
+
+/* LAYOUT DO ITEM DA LISTA VERTICAL */
+li {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  gap: 10px; 
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid var(--cor-principal);
+  transition: box-shadow var(--transicao-rapida), border-color var(--transicao-rapida);
+  width: 100%; 
+}
+
+li:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para tarefas CONCLUIDAS */
+li.tarefa-concluida {
+    opacity: 0.85; 
+    border-left-color: var(--cor-sucesso);
+    background-color: #f7f9fb;
+}
+
+/* conteúdo principal e os parágrafos ocupem a linha toda */
+li > div:first-child,
+li p, li div {
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para o input de edição dentro do item */
+li input[type="text"] {
+    width: 100%; 
+    padding: 5px 8px;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+/* Área de botões no rodapé do item */
+li > div:last-child {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* Botões de Ação Específicos */
+li > div:last-child button {
+    flex-grow: 1; /* botões ocupem o mesmo espaço */
+    font-size: 1em;
+}
+
+li > div:last-child button:nth-child(1) { /* Botão Concluir/Reabrir */
+    background-color: var(--cor-sucesso); 
+}
+
+li > div:last-child button:nth-child(2) { /* Botão Editar */
+    background-color: #636e72;
+}
+
+li > div:last-child button:nth-child(3) { /* Botão Deletar */
+    background-color: var(--cor-erro);
+}
