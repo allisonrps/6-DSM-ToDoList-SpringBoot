@@ -7,7 +7,7 @@
  *
  * @author allis
  */
-package com.todo.todolist.entity;
+package com.todo.todo_list.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

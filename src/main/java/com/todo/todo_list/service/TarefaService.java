@@ -7,10 +7,10 @@
  *
  * @author allis
  */
-package com.todo.todolist.service;
+package com.todo.todo_list.service;
 
-import com.todo.todolist.entity.Tarefa;
-import com.todo.todolist.repository.TarefaRepository;
+import com.todo.todo_list.entity.Tarefa;
+import com.todo.todo_list.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

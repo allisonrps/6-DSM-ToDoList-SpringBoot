@@ -7,10 +7,10 @@
  *
  * @author allis
  */
-package com.todo.todolist.controller;
+package com.todo.todo_list.controller;
 
-import com.todo.todolist.entity.Tarefa;
-import com.todo.todolist.service.TarefaService;
+import com.todo.todo_list.entity.Tarefa;
+import com.todo.todo_list.service.TarefaService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

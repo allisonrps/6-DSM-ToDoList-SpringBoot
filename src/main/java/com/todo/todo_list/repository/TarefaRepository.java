@@ -7,9 +7,9 @@
  *
  * @author allis
  */
-package com.todo.todolist.repository;
+package com.todo.todo_list.repository;
 
-import com.todo.todolist.entity.Tarefa;
+import com.todo.todo_list.entity.Tarefa;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
