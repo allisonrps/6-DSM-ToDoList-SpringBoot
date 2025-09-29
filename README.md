@@ -113,6 +113,33 @@ mvn spring-boot:run
 
 📡 A API estará disponível em: **http://localhost:8080/tarefas**
 
+### 🔗 Endpoints da API
+
+A API expõe o endpoint base `/tarefas` para todas as operações CRUD.
+
+| Método HTTP | Endpoint | Descrição | Método do Serviço |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/tarefas` | Cria uma nova tarefa. | `service.criar()` |
+| **GET** | `/tarefas` | Retorna uma lista de todas as tarefas. | `service.listar()` |
+| **GET** | `/tarefas/{id}` | Retorna uma tarefa específica pelo ID. | `service.buscarPorId()` |
+| **PUT** | `/tarefas/{id}` | Atualiza uma tarefa existente (todos os campos). | `service.atualizar()` |
+| **DELETE** | `/tarefas/{id}` | Remove uma tarefa pelo ID. | `service.deletar()` |
+
+### 📄 Modelo de Dados (JSON Payload)
+
+A entidade `Tarefa` é o objeto central da aplicação.:
+
+```json
+{
+    "id": 1,
+    "nome": "Comprar Pão Integral",
+    "descricao": "Da marca favorita, integral e sem açúcar.",
+    "status": "PENDENTE", 
+    "observacoes": "Verificar se tem na promoção.",
+    "dataCriacao": "2025-09-29T18:00:00.000",
+    "dataAtualizacao": "2025-09-29T18:00:00.000"
+}
+```
 ---
 
 ### 💻 Passo 3: Rodar o Frontend (React)
