@@ -1,107 +1,145 @@
 # 🚀 6-DSM-ToDoList-SpringBoot & React
 
-Um projeto de **Lista de Tarefas (To-Do List)** Full-Stack desenvolvido para fins acadêmicos/demonstrativos, demonstrando a integração entre um backend Java e um frontend moderno em JavaScript.
+## 👨‍💻 Desenvolvedores
+
+**Allison Rodrigues de Paula e Silva**  
+**Paula Cristina Abib Teixeira**
 
 ---
 
-## ✨ Visão Geral do Projeto
+Um projeto **Full-Stack de Lista de Tarefas (To-Do List)** desenvolvido para fins acadêmicos e demonstrativos.  
+A aplicação integra um **backend robusto em Java (Spring Boot)** com um **frontend moderno em React**, permitindo criar, gerenciar e acompanhar tarefas de forma prática.  
 
-Este projeto demonstra a arquitetura de uma aplicação moderna, onde o **Backend** gerencia a lógica de negócio e o banco de dados, e o **Frontend** consome a API para fornecer uma interface de usuário rica.
+---
 
-### ⚙️ Tecnologias Utilizadas
+## ✨ Visão Geral
+
+Este projeto mostra como construir uma aplicação moderna, onde:  
+- O **Backend** é responsável pela lógica de negócio e persistência no banco de dados.  
+- O **Frontend** consome a API e fornece uma **interface interativa e responsiva** para o usuário.  
+
+---
+
+## ⚙️ Tecnologias Utilizadas
 
 | Componente | Tecnologia | Detalhes |
-| :--- | :--- | :--- |
-| **Backend (API)** | **Spring Boot 3.x** | Java, Maven, REST API. |
-| **Persistência** | **Spring Data JPA** | Hibernate para mapeamento ORM. |
-| **Banco de Dados** | **PostgreSQL** | Banco de dados relacional (porta 5432). |
-| **Frontend (SPA)** | **React.js** | Interface do usuário e lógica de estado. |
-| **Comunicação** | **Axios** | Cliente HTTP para requisições à API. |
-
-### 🎯 Funcionalidades da Aplicação
-
-A aplicação permite ao usuário:
-
-* **Criar** uma nova tarefa (com Nome, Descrição e Observações).
-* **Listar** todas as tarefas com detalhes completos.
-* **Atualizar/Editar** o nome, descrição, observações e status de uma tarefa.
-* **Mudar o Status** (de `PENDENTE` para `CONCLUIDA` e vice-versa).
-* **Deletar** tarefas.
+|------------|------------|-----------|
+| **Backend (API)** | Java 17+, Spring Boot 3.x, Maven | REST API |
+| **Persistência** | Spring Data JPA + Hibernate | ORM |
+| **Banco de Dados** | PostgreSQL (porta 5432) | Relacional |
+| **Frontend (SPA)** | React.js |
+| **Comunicação** | Axios | Cliente HTTP |
 
 ---
 
-## 🏗️ Estrutura de Diretórios
+## 🎯 Funcionalidades
 
-O projeto está organizado em duas pastas principais, refletindo a arquitetura Full-Stack:
+- ✅ **Criar** tarefas com *Nome*, *Descrição* e *Observações*  
+- 📋 **Listar** todas as tarefas com seus detalhes  
+- ✏️ **Editar/Atualizar** informações da tarefa  
+- 🔄 **Alterar Status** (entre `PENDENTE` e `CONCLUIDA`)  
+- 🗑️ **Excluir** tarefas  
 
+---
+
+## 📂 Estrutura de Diretórios
+
+```
 .
-├── 6-DSM-ToDoList-SpringBoot/  <-- BACKEND (Java/Maven)
-└── FRONT/
-└── todo-frontend/          <-- FRONTEND (React/npm)
-
+├── backend/   # BACKEND (Java + Spring Boot)
+└── frontend/  # FRONTEND (React + npm)     
+```
 
 ---
 
 ## ⚙️ Configuração e Execução
 
-Siga os passos abaixo para colocar o Backend e o Frontend no ar.
+### 🔑 Pré-requisitos
 
-### Pré-requisitos
+Antes de iniciar, certifique-se de ter instalado:  
+- **Java JDK 17+**  
+- **PostgreSQL**
+- **React + npm**  
 
-Certifique-se de ter instalado:
+---
 
-1.  **Java JDK 17** ou superior.
-2.  **PostgreSQL** (Servidor rodando na porta padrão `5432`).
-3.  **Node.js e npm** (para o Frontend).
+### 🛠️ Passo 1: Configurar o Banco de Dados
 
-### Passo 1: Configurar o Banco de Dados
+No PostgreSQL, execute o seguinte script para criar o banco **`to_do`** e a tabela **`tarefa`**:  
 
-1.  Crie um banco de dados vazio no PostgreSQL chamado **`to_do`**.
-2.  Verifique (e ajuste, se necessário) as credenciais no arquivo **`6-DSM-ToDoList-SpringBoot/src/main/resources/application.properties`**:
+```sql
+-- Criar database
+CREATE DATABASE to_do;
+
+-- Conectar ao banco
+\c to_do;
+
+-- Criar tabela
+CREATE TABLE tarefa (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao VARCHAR(255),
+    status VARCHAR(20) NOT NULL DEFAULT 'PENDENTE',
+    observacoes TEXT,
+    data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Depois, ajuste as credenciais no arquivo  
+**`/src/main/resources/application.properties`**:  
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/to_do
 spring.datasource.username=postgres
-spring.datasource.password=123456
-(O Hibernate criará automaticamente a tabela tarefa na primeira execução.)
+spring.datasource.password=suasenhapostgres
+spring.jpa.hibernate.ddl-auto=update
+```
 
-Passo 2: Iniciar o Backend (Spring Boot)
-Navegue até o diretório raiz do Backend:
+---
 
-Bash
+### 🚀 Passo 2: Rodar o Backend (Spring Boot)
 
-cd 6-DSM-ToDoList-SpringBoot
-Inicie a aplicação utilizando o wrapper Maven:
+No terminal, vá até a pasta do backend:  
+```bash
+cd backend
+```
 
-Bash
+Inicie a aplicação:  
+```bash
+mvn clean install 
+mvn spring-boot:run 
+```
 
-./mvnw spring-boot:run
-(No Windows, use .\mvnw spring-boot:run)
+📡 A API estará disponível em: **http://localhost:8080**
 
-A API estará disponível na porta 8080.
+---
 
-Passo 3: Iniciar o Frontend (React)
-Abra um novo terminal e navegue até o diretório do Frontend:
+### 💻 Passo 3: Rodar o Frontend (React)
 
-Bash
+Abra outro terminal e vá até a pasta do frontend:  
+```bash
+cd frontend
+```
 
-cd FRONT/todo-frontend
-Instale as dependências (se for a primeira vez):
-
-Bash
-
+Instale as dependências:  
+```bash
 npm install
-Inicie a aplicação React:
+```
 
-Bash
-
+Inicie o servidor React:  
+```bash
 npm start
-O Frontend será aberto automaticamente em seu navegador na porta 3000 (http://localhost:3000).
+```
 
-✅ Executando Testes (Backend)
-Para garantir que a lógica de negócio e os endpoints da API estejam funcionando corretamente, execute os testes unitários do Spring Boot:
+🌐 O frontend abrirá automaticamente em **http://localhost:3000**
 
-Bash
+---
 
-cd 6-DSM-ToDoList-SpringBoot
-./mvnw test
+## ✅ Executando Testes (Backend)
+
+Para rodar os testes unitários do Spring Boot:  
+```bash
+cd backend
+mvn test
+```
