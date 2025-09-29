@@ -111,7 +111,7 @@ mvn clean install
 mvn spring-boot:run 
 ```
 
-📡 A API estará disponível em: **http://localhost:8080**
+📡 A API estará disponível em: **http://localhost:8080/tarefas**
 
 ---
 
